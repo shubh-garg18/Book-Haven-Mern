@@ -3,8 +3,10 @@ import {
     getAllBooks,
     getSingleBook,
     postABook,
-} from "../controllers/book.controller";
-import { verifyJWT } from "../middlewares/auth.middleware";
+    UpdateBook,
+    deleteBook,
+} from "../controllers/book.controller.js";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 

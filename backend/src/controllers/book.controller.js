@@ -1,7 +1,7 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import Book from "../models/book.model.js";
+import { Book } from "../models/book.model.js";
 import { isValidObjectId } from "mongoose";
 
 const postABook = asyncHandler(async (req, res) => {
@@ -120,7 +120,7 @@ const UpdateBook = asyncHandler(async (req, res) => {
         .json(new ApiResponse(201, "Book updated successfully", book));
 });
 
-const deleteABook = asyncHandler(async (req, res) => {
+const deleteBook = asyncHandler(async (req, res) => {
     const { id } = req.params;
 
     if (!isValidObjectId(id)) {
@@ -138,4 +138,4 @@ const deleteABook = asyncHandler(async (req, res) => {
         .json(new ApiResponse(201, "Book deleted successfully", book));
 });
 
-export { postABook, getAllBooks, getSingleBook, UpdateBook, deleteABook };
+export { postABook, getAllBooks, getSingleBook, UpdateBook, deleteBook };

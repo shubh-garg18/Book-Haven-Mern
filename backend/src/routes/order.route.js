@@ -2,8 +2,8 @@ import { Router } from "express";
 import {
     createAOrder,
     getOrderByEmail,
-} from "../controllers/order.controller";
-import { verifyJWT } from "../middlewares/auth.middleware";
+} from "../controllers/order.controller.js";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 

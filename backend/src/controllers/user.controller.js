@@ -1,9 +1,9 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import User from "../models/user.model.js";
+import { User } from "../models/user.model.js";
 
-const adminRegister = asyncHandler(async (req, res) => {
+const Register = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
@@ -36,7 +36,7 @@ const adminRegister = asyncHandler(async (req, res) => {
         );
 });
 
-const adminLogin = asyncHandler(async (req, res) => {
+const Login = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
@@ -72,7 +72,7 @@ const adminLogin = asyncHandler(async (req, res) => {
         .json(new ApiResponse(201, "User logged in successfully", user));
 });
 
-const adminLogout = asyncHandler(async (req, res) => {
+const Logout = asyncHandler(async (req, res) => {
     const options = {
         httpOnly: true,
         secure: true,
@@ -84,4 +84,4 @@ const adminLogout = asyncHandler(async (req, res) => {
         .json(new ApiResponse(201, "User logged out successfully", {}));
 });
 
-export { adminRegister, adminLogin, adminLogout };
+export { Register, Login, Logout };

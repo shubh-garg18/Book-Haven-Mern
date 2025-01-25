@@ -1,7 +1,7 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import Order from "../models/order.model.js";
+import { Order } from "../models/order.model.js";
 
 const createAOrder = asyncHandler(async (req, res) => {
     const { user, productIds, totalPrice, address, phone } = req.body;
@@ -52,7 +52,9 @@ const getOrderByEmail = asyncHandler(async (req, res) => {
             },
         },
         {
-            $sort: { createdAt: -1 },
+            $sort: {
+                createdAt: -1,
+            },
         },
         {
             $project: {
