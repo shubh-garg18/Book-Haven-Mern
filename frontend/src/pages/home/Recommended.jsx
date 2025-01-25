@@ -1,33 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // import required modules
-import { Pagination, Navigation } from 'swiper/modules';
+import { Pagination, Navigation } from "swiper/modules";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import BookCard from '../books/BookCard';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import BookCard from "../books/BookCard";
+import { useFetchAllBooksQuery } from "../../app/features/books/booksApi";
 
+const Recommended = () => {
+    const { data: obj = [] } = useFetchAllBooksQuery();
+    const books = obj.data || [];
+    return (
+        <div className="py-16">
+            <h2 className="text-3xl font-semibold mb-6">
+                Recommended for you{" "}
+            </h2>
 
-const Recommened = () => {
-   
-
-    const [books, setBooks] = useState([]);
-
-    useEffect(() => {
-        fetch("books.json")    
-        .then(res => res.json())
-        .then(data => setBooks(data))    
-    }, [])
-  return (
-    <div className='py-16'>
-         <h2 className='text-3xl font-semibold mb-6'>Recommended for you </h2>
-
-
-         <Swiper
+            <Swiper
                 slidesPerView={1}
                 spaceBetween={30}
                 navigation={true}
@@ -47,25 +41,20 @@ const Recommened = () => {
                     1180: {
                         slidesPerView: 3,
                         spaceBetween: 50,
-                    }
+                    },
                 }}
                 modules={[Pagination, Navigation]}
                 className="mySwiper"
             >
-
-                {
-                   books.length > 0 && books.slice(8, 18).map((book, index) => (
+                {books.length > 0 &&
+                    books.slice(8, 18).map((book, index) => (
                         <SwiperSlide key={index}>
-                            <BookCard  book={book} />
+                            <BookCard book={book} />
                         </SwiperSlide>
-                    ))
-                }
-
-
-
+                    ))}
             </Swiper>
-    </div>
-  )
-}
+        </div>
+    );
+};
 
-export default Recommened
+export default Recommended;

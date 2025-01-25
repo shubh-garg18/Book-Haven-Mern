@@ -1,42 +1,47 @@
-import {createBrowserRouter} from 'react-router-dom'
-import App from '../App'
-import Home from '../pages/home/Home.jsx'
-import Login from '../components/Login.jsx'
-import Register from '../components/Register.jsx'
-import CartPage from '../pages/books/CartPage.jsx'
-import CheckoutPage from '../pages/books/CheckoutPage.jsx'
+import { createBrowserRouter } from "react-router-dom";
+import App from "../App";
+import Home from "../pages/home/Home.jsx";
+import Login from "../components/Login.jsx";
+import Register from "../components/Register.jsx";
+import CartPage from "../pages/books/CartPage.jsx";
+import CheckoutPage from "../pages/books/CheckoutPage.jsx";
+import SingleBook from "../pages/books/SingleBook.jsx";
 
 const router = createBrowserRouter([
     {
-        path: '/',
+        path: "/",
         element: <App />,
         children: [
             {
-                path: '/',
+                path: "/",
                 element: <Home />,
             },
             {
-                path: '/login',	
+                path: "/login",
                 element: <Login />,
             },
             {
-                path: '/register',	
+                path: "/register",
                 element: <Register />,
             },
             {
-                path: '/cart',	
+                path: "/cart",
                 element: <CartPage />,
             },
             {
-                path: '/checkout',	
+                path: "/checkout",
                 element: <CheckoutPage />,
-            }
+            },
+            {
+                path: "/books/:id",
+                element: <SingleBook />,
+            },
             /*{
                 path: '/about',
                 element: <About />,
             },*/
         ],
     },
-])
+]);
 
-export default router
+export default router;
